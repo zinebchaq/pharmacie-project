@@ -1,0 +1,8 @@
+videos_oracle/
+pharmacie-backend/node_modules/
+pharmacie-frontend/node_modules/
+*.pdf
+*.pptx
+*.docx
+*.env
+.env
