@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+
+  # Service Oracle Database
+  oracle:
+    image: gvenzl/oracle-xe:21-slim  # image Oracle XE légère et gratuite
+    container_name: oracle-db
+    ports:
+      - '1521:1521'  # port Oracle
+    environment:
+      - ORACLE_PASSWORD=zineb1        # mot de passe admin Oracle
+      - APP_USER=zineb1               # créer un utilisateur automatiquement
+      - APP_USER_PASSWORD=zineb1      # mot de passe de l'utilisateur
+    volumes:
+      - oracle-data:/opt/oracle/oradata  # sauvegarder les données Oracle
+
+  # Service Backend Node.js
+  backend:
+    build:
+      context: ./pharmacie-backend
+      dockerfile: Dockerfile
+    container_name: pharmacie-backend
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - DB_USER=zineb1
+      - DB_PASSWORD=zineb1
+      - DB_CONNECT_STRING=oracle:1521/XEPDB1  # oracle = nom du service Oracle
+      - JWT_SECRET=ton_secret_jwt
+      - JWT_EXPIRES_IN=24h
+    depends_on:
+      - oracle  # attendre qu'Oracle démarre avant le backend
+    volumes:
+      - ./pharmacie-backend:/app
+      - /app/node_modules
+
+  # Service Frontend React
+  frontend:
+    image: node:18-slim
+    container_name: pharmacie-frontend
+    ports:
+      - '5173:5173'
+    working_dir: /app
+    volumes:
+      - ./pharmacie-frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - backend  # attendre que le backend démarre avant le frontend
+
+# Volume pour sauvegarder les données Oracle
+volumes:
+  oracle-data:
+
+# Réseau pour connecter les conteneurs entre eux
+networks:
+  default:
+    driver: bridge
