@@ -4,7 +4,8 @@ require('dotenv').config();
 const dbConfig = {
   user: process.env.DB_USER || 'zineb1',
   password: process.env.DB_PASSWORD || 'zineb1',
-  connectString: 'localhost:1521/orclpdb'
+  
+  connectString: process.env.DB_CONNECT_STRING || 'localhost:1521/orclpdb'
 };
 
 let pool;
