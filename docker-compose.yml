@@ -21,6 +21,7 @@ services:
       context: ./pharmacie-backend
       dockerfile: Dockerfile
     container_name: pharmacie-backend
+    restart: on-failure
     ports:
       - '3000:3000'
     environment:
