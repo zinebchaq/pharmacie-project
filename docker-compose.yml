@@ -39,7 +39,7 @@ services:
 
   # Service Frontend React
   frontend:
-    image: node:18-slim
+    image: node:20-slim
     container_name: pharmacie-frontend
     ports:
     - '5173:5173'
