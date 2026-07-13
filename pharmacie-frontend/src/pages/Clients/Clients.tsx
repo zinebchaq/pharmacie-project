@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Clients.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Client {
   ID_CLIENT: number;
@@ -71,7 +72,7 @@ const Clients = () => {
 
   const loadData = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/api/clients', {
+      const response = await fetch(`${API_BASE_URL}/api/clients`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -167,7 +168,7 @@ const Clients = () => {
     try {
       const url = editingClient
         ? `${API_BASE_URL}/api/clients/${editingClient.ID_CLIENT}`
-        : '${API_BASE_URL}/api/clients';
+        : `${API_BASE_URL}/api/clients`;
 
       const method = editingClient ? 'PUT' : 'POST';
 

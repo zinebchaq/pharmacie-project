@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Archives.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Archive {
   id: number;
@@ -49,7 +50,7 @@ const Archives = () => {
   const loadData = async () => {
     try {
       // Charger stats
-      const statsRes = await fetch('${API_BASE_URL}/api/archives/stats', {
+      const statsRes = await fetch(`${API_BASE_URL}/api/archives/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const statsData = await statsRes.json();
@@ -64,7 +65,7 @@ const Archives = () => {
       }
 
       // Charger produits archivés
-      const produitsRes = await fetch('${API_BASE_URL}/api/archives/produits', {
+      const produitsRes = await fetch(`${API_BASE_URL}/api/archives/produits`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const produitsData = await produitsRes.json();
@@ -73,7 +74,7 @@ const Archives = () => {
       }
 
       // Charger clients archivés
-      const clientsRes = await fetch('${API_BASE_URL}/api/archives/clients', {
+      const clientsRes = await fetch(`${API_BASE_URL}/api/archives/clients`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const clientsData = await clientsRes.json();
@@ -82,7 +83,7 @@ const Archives = () => {
       }
 
       // Charger commandes archivées
-      const commandesRes = await fetch('${API_BASE_URL}/api/archives/commandes', {
+      const commandesRes = await fetch(`${API_BASE_URL}/api/archives/commandes`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesRes.json();
@@ -104,7 +105,7 @@ const Archives = () => {
     }
 
     try {
-      const response = await fetch('${API_BASE_URL}/api/archives/clients/archiver-inactifs', {
+      const response = await fetch(`${API_BASE_URL}/api/archives/clients/archiver-inactifs`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Produits.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Produit {
   ID_PRODUIT: number;
@@ -71,7 +72,7 @@ const Produits = () => {
   const loadData = async () => {
     try {
       // Charger produits
-      const produitsRes = await fetch('${API_BASE_URL}/api/produits', {
+      const produitsRes = await fetch(`${API_BASE_URL}/api/produits`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const produitsData = await produitsRes.json();
@@ -82,7 +83,7 @@ const Produits = () => {
       }
 
       // Charger fournisseurs
-      const fournisseursRes = await fetch('${API_BASE_URL}/api/produits/fournisseurs/liste', {
+      const fournisseursRes = await fetch(`${API_BASE_URL}/api/produits/fournisseurs/liste`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const fournisseursData = await fournisseursRes.json();
@@ -91,7 +92,7 @@ const Produits = () => {
       }
 
       // Charger catégories
-      const categoriesRes = await fetch('${API_BASE_URL}/api/produits/categories/liste', {
+      const categoriesRes = await fetch(`${API_BASE_URL}/api/produits/categories/liste`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const categoriesData = await categoriesRes.json();
@@ -189,7 +190,7 @@ const Produits = () => {
     try {
       const url = editingProduit
         ? `${API_BASE_URL}/api/produits/${editingProduit.ID_PRODUIT}`
-        : '${API_BASE_URL}/api/produits';
+        : `${API_BASE_URL}/api/produits`;
 
       const method = editingProduit ? 'PUT' : 'POST';
 

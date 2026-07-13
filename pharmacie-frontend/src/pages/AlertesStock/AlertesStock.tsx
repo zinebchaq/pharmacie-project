@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AlertesStock.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Alerte {
   ID_PRODUIT: number;
@@ -73,7 +74,7 @@ const AlertesStock = () => {
 
   const loadStats = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/api/alertes-stock/stats', {
+      const response = await fetch(`${API_BASE_URL}/api/alertes-stock/stats`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

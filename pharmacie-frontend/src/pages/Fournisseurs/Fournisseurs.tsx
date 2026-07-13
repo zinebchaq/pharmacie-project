@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Fournisseurs.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Fournisseur {
   ID_FOURNISSEUR: number;
@@ -55,7 +56,7 @@ const Fournisseurs = () => {
 
   const loadData = async () => {
     try {
-      const response = await fetch('${API_BASE_URL}/api/fournisseurs', {
+      const response = await fetch(`${API_BASE_URL}/api/fournisseurs`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -123,7 +124,7 @@ const Fournisseurs = () => {
     try {
       const url = editingFournisseur
         ? `${API_BASE_URL}/api/fournisseurs/${editingFournisseur.ID_FOURNISSEUR}`
-        : '${API_BASE_URL}/api/fournisseurs';
+        : `${API_BASE_URL}/api/fournisseurs`;
 
       const method = editingFournisseur ? 'PUT' : 'POST';
 

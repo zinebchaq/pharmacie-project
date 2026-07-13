@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Commandes.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Commande {
   ID_COMMANDE: number;
@@ -79,7 +80,7 @@ const Commandes = () => {
   const loadData = async () => {
     try {
       // Charger commandes
-      const commandesRes = await fetch('${API_BASE_URL}/api/commandes', {
+      const commandesRes = await fetch(`${API_BASE_URL}/api/commandes`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesRes.json();
@@ -90,7 +91,7 @@ const Commandes = () => {
       }
 
       // Charger clients
-      const clientsRes = await fetch('${API_BASE_URL}/api/commandes/clients/liste', {
+      const clientsRes = await fetch(`${API_BASE_URL}/api/commandes/clients/liste`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const clientsData = await clientsRes.json();
@@ -197,7 +198,7 @@ const Commandes = () => {
     }
 
     try {
-      const response = await fetch('${API_BASE_URL}/api/commandes', {
+      const response = await fetch(`${API_BASE_URL}/api/commandes`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

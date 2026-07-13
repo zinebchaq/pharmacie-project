@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Paiements.module.css';
+import { API_BASE_URL } from '../../config/api';
 
 interface Paiement {
   ID_PAIEMENT: number;
@@ -67,7 +68,7 @@ const Paiements = () => {
   const loadData = async () => {
     try {
       // Charger paiements
-      const paiementsRes = await fetch('${API_BASE_URL}/api/paiements', {
+      const paiementsRes = await fetch(`${API_BASE_URL}/api/paiements`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const paiementsData = await paiementsRes.json();
@@ -82,7 +83,7 @@ const Paiements = () => {
       }
 
       // Charger commandes pour le dropdown
-      const commandesRes = await fetch('${API_BASE_URL}/api/paiements/commandes/liste', {
+      const commandesRes = await fetch(`${API_BASE_URL}/api/paiements/commandes/liste`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesRes.json();
@@ -91,7 +92,7 @@ const Paiements = () => {
       }
 
       // Charger statistiques
-      const statsRes = await fetch('${API_BASE_URL}/api/paiements/stats/resume', {
+      const statsRes = await fetch(`${API_BASE_URL}/api/paiements/stats/resume`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const statsData = await statsRes.json();
@@ -144,7 +145,7 @@ const Paiements = () => {
     try {
       const url = editingId 
         ? `${API_BASE_URL}/api/paiements/${editingId}`
-        : '${API_BASE_URL}/api/paiements';
+        : `${API_BASE_URL}/api/paiements`;
       
       const method = editingId ? 'PUT' : 'POST';
 
