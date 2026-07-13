@@ -8,7 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());  // Autorise le frontend à appeler le backend
+app.use(cors({
+  origin: '*',  // Autorise toutes les origines (pour le développement)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));  // Autorise le frontend à appeler le backend
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
