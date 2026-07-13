@@ -46,7 +46,7 @@ const AlertesStock = () => {
     setLoading(true);
     try {
       const seuilToUse = customSeuil !== undefined ? customSeuil : seuil;
-      const url = `http://localhost:3000/api/alertes-stock/seuil/${seuilToUse}`;
+      const url = `${API_BASE_URL}/api/alertes-stock/seuil/${seuilToUse}`;
 
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${token}` }
@@ -73,7 +73,7 @@ const AlertesStock = () => {
 
   const loadStats = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/alertes-stock/stats', {
+      const response = await fetch('${API_BASE_URL}/api/alertes-stock/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

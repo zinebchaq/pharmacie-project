@@ -55,7 +55,7 @@ const Fournisseurs = () => {
 
   const loadData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/fournisseurs', {
+      const response = await fetch('${API_BASE_URL}/api/fournisseurs', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -122,8 +122,8 @@ const Fournisseurs = () => {
 
     try {
       const url = editingFournisseur
-        ? `http://localhost:3000/api/fournisseurs/${editingFournisseur.ID_FOURNISSEUR}`
-        : 'http://localhost:3000/api/fournisseurs';
+        ? `${API_BASE_URL}/api/fournisseurs/${editingFournisseur.ID_FOURNISSEUR}`
+        : '${API_BASE_URL}/api/fournisseurs';
 
       const method = editingFournisseur ? 'PUT' : 'POST';
 
@@ -157,7 +157,7 @@ const Fournisseurs = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/fournisseurs/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/fournisseurs/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -178,7 +178,7 @@ const Fournisseurs = () => {
 
   const handleViewDetails = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/fournisseurs/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/fournisseurs/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

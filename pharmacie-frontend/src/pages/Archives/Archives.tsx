@@ -49,7 +49,7 @@ const Archives = () => {
   const loadData = async () => {
     try {
       // Charger stats
-      const statsRes = await fetch('http://localhost:3000/api/archives/stats', {
+      const statsRes = await fetch('${API_BASE_URL}/api/archives/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const statsData = await statsRes.json();
@@ -64,7 +64,7 @@ const Archives = () => {
       }
 
       // Charger produits archivés
-      const produitsRes = await fetch('http://localhost:3000/api/archives/produits', {
+      const produitsRes = await fetch('${API_BASE_URL}/api/archives/produits', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const produitsData = await produitsRes.json();
@@ -73,7 +73,7 @@ const Archives = () => {
       }
 
       // Charger clients archivés
-      const clientsRes = await fetch('http://localhost:3000/api/archives/clients', {
+      const clientsRes = await fetch('${API_BASE_URL}/api/archives/clients', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const clientsData = await clientsRes.json();
@@ -82,7 +82,7 @@ const Archives = () => {
       }
 
       // Charger commandes archivées
-      const commandesRes = await fetch('http://localhost:3000/api/archives/commandes', {
+      const commandesRes = await fetch('${API_BASE_URL}/api/archives/commandes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesRes.json();
@@ -104,7 +104,7 @@ const Archives = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/archives/clients/archiver-inactifs', {
+      const response = await fetch('${API_BASE_URL}/api/archives/clients/archiver-inactifs', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -129,7 +129,7 @@ const Archives = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/archives/${type}/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/archives/${type}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

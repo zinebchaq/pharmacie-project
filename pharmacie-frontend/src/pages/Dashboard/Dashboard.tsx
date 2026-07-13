@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   const loadDashboardData = async (token: string) => {
     try {
-      const statsResponse = await fetch('http://localhost:3000/api/dashboard/stats', {
+      const statsResponse = await fetch('${API_BASE_URL}/api/dashboard/stats', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const statsData = await statsResponse.json();
@@ -47,7 +47,7 @@ const Dashboard = () => {
         setStats(statsData.stats);
       }
 
-      const produitsResponse = await fetch('http://localhost:3000/api/dashboard/produits-alerte', {
+      const produitsResponse = await fetch('${API_BASE_URL}/api/dashboard/produits-alerte', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const produitsData = await produitsResponse.json();
@@ -55,7 +55,7 @@ const Dashboard = () => {
         setProduitsAlerte(produitsData.produits);
       }
 
-      const commandesResponse = await fetch('http://localhost:3000/api/dashboard/commandes-recentes', {
+      const commandesResponse = await fetch('${API_BASE_URL}/api/dashboard/commandes-recentes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesResponse.json();

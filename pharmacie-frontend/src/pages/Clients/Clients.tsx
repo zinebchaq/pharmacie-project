@@ -71,7 +71,7 @@ const Clients = () => {
 
   const loadData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/clients', {
+      const response = await fetch('${API_BASE_URL}/api/clients', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -166,8 +166,8 @@ const Clients = () => {
 
     try {
       const url = editingClient
-        ? `http://localhost:3000/api/clients/${editingClient.ID_CLIENT}`
-        : 'http://localhost:3000/api/clients';
+        ? `${API_BASE_URL}/api/clients/${editingClient.ID_CLIENT}`
+        : '${API_BASE_URL}/api/clients';
 
       const method = editingClient ? 'PUT' : 'POST';
 
@@ -201,7 +201,7 @@ const Clients = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/clients/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -222,7 +222,7 @@ const Clients = () => {
 
   const handleViewDetails = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/clients/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/clients/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

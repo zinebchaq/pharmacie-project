@@ -79,7 +79,7 @@ const Commandes = () => {
   const loadData = async () => {
     try {
       // Charger commandes
-      const commandesRes = await fetch('http://localhost:3000/api/commandes', {
+      const commandesRes = await fetch('${API_BASE_URL}/api/commandes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const commandesData = await commandesRes.json();
@@ -90,7 +90,7 @@ const Commandes = () => {
       }
 
       // Charger clients
-      const clientsRes = await fetch('http://localhost:3000/api/commandes/clients/liste', {
+      const clientsRes = await fetch('${API_BASE_URL}/api/commandes/clients/liste', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const clientsData = await clientsRes.json();
@@ -112,7 +112,7 @@ const Commandes = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/commandes/produits/recherche?q=${query}`, {
+      const res = await fetch(`${API_BASE_URL}/api/commandes/produits/recherche?q=${query}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -197,7 +197,7 @@ const Commandes = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/commandes', {
+      const response = await fetch('${API_BASE_URL}/api/commandes', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -234,7 +234,7 @@ const Commandes = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/commandes/${idCommande}/statut`, {
+      const response = await fetch(`${API_BASE_URL}/api/commandes/${idCommande}/statut`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -263,7 +263,7 @@ const Commandes = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/commandes/${idCommande}`, {
+      const response = await fetch(`${API_BASE_URL}/api/commandes/${idCommande}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -284,7 +284,7 @@ const Commandes = () => {
 
   const handleViewDetails = async (idCommande: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/commandes/${idCommande}`, {
+      const response = await fetch(`${API_BASE_URL}/api/commandes/${idCommande}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

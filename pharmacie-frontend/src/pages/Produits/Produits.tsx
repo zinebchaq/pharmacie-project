@@ -71,7 +71,7 @@ const Produits = () => {
   const loadData = async () => {
     try {
       // Charger produits
-      const produitsRes = await fetch('http://localhost:3000/api/produits', {
+      const produitsRes = await fetch('${API_BASE_URL}/api/produits', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const produitsData = await produitsRes.json();
@@ -82,7 +82,7 @@ const Produits = () => {
       }
 
       // Charger fournisseurs
-      const fournisseursRes = await fetch('http://localhost:3000/api/produits/fournisseurs/liste', {
+      const fournisseursRes = await fetch('${API_BASE_URL}/api/produits/fournisseurs/liste', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const fournisseursData = await fournisseursRes.json();
@@ -91,7 +91,7 @@ const Produits = () => {
       }
 
       // Charger catégories
-      const categoriesRes = await fetch('http://localhost:3000/api/produits/categories/liste', {
+      const categoriesRes = await fetch('${API_BASE_URL}/api/produits/categories/liste', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const categoriesData = await categoriesRes.json();
@@ -188,8 +188,8 @@ const Produits = () => {
 
     try {
       const url = editingProduit
-        ? `http://localhost:3000/api/produits/${editingProduit.ID_PRODUIT}`
-        : 'http://localhost:3000/api/produits';
+        ? `${API_BASE_URL}/api/produits/${editingProduit.ID_PRODUIT}`
+        : '${API_BASE_URL}/api/produits';
 
       const method = editingProduit ? 'PUT' : 'POST';
 
@@ -229,7 +229,7 @@ const Produits = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/produits/${id}/statut`, {
+      const response = await fetch(`${API_BASE_URL}/api/produits/${id}/statut`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -258,7 +258,7 @@ const Produits = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/produits/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/produits/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
